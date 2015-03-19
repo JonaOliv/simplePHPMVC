@@ -28,7 +28,7 @@
   `empctc` varchar(45) COLLATE utf8_bin DEFAULT NULL,
   `emptip` char(3) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`empresaId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
     */
