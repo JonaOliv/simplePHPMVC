@@ -47,6 +47,12 @@
         case "empresas":
             require_once("controllers/mnt/empresas.control.php");
             break;
+        case "tipomateriales":
+            require_once("controllers/mnt/tipomateriales.control.php");
+            break;
+        case "tipomaterial":
+            require_once("controllers/mnt/tipomaterial.control.php");
+            break;
         default:
             require_once("controllers/error.control.php");
 
