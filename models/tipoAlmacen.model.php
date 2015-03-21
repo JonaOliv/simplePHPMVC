@@ -25,6 +25,14 @@ FROM `nw201501`.`tipoAlmacen`;
       $TipoAlmacen = obtenerUnRegistro($sqlstr);
       return $TipoAlmacen;
     }
+    
+    function sePuedeBorrar($TipoAlmacenID){
+        $TipoAlmacenID = array();
+      $sqlstr = "select * from almacenes where tipoAlmId = %d;";
+      $sqlstr = sprintf($sqlstr, $TipoAlmacenID);
+      $TipoAlmacenID = obtenerUnRegistro($sqlstr);
+      return $TipoAlmacenID;
+    }
 
     function insertarTipoAlmacen($TipoAlmacen){
       if($TipoAlmacen && is_array($TipoAlmacen)){

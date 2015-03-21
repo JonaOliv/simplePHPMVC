@@ -15,4 +15,14 @@
       header("Location: $url");
       die();
     }
+
+    function mergeArrayTo(&$origin, &$destiny){
+      if(is_array($origin) && is_array($destiny)){
+        foreach($origin as $okey => $ovalue){
+          if(isset($destiny[$okey])){
+            $destiny[$okey] = $ovalue;
+          }
+        }
+      }
+    }
 ?>

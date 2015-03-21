@@ -53,6 +53,13 @@
         case "tipomaterial":
             require_once("controllers/mnt/tipomaterial.control.php");
             break;
+        case "tipoalmacenes":
+            require_once("controllers/mnt/tipoalmacenes.control.php");
+            //echo "<script></script>";
+            break;
+        case "tipoalmacen":
+            require_once("controllers/mnt/tipoalmacen.control.php");
+            break;
         default:
             require_once("controllers/error.control.php");
 

@@ -21,7 +21,7 @@
   print_r(obtenerEmpresa(3));*/
   
   //echo insertarEmpresa($Empresa);
-  //print_r(obtenerEmpresas());
+  print_r(obtenerEmpresas());
   /*
   $TipoMaterial=array();
   $TipoMaterial["tipoMatdsc"]="madera";
@@ -30,15 +30,17 @@
   echo insertarTipoMaterial($TipoMaterial)."</br>";
   //print_r(obtenerTipoMaterial(3));
   print_r(obtenerEmpresas());*/
-
+  /*
   $TipoAlmacen=array();
   $TipoAlmacen["tipoAlmdsc"]="Madera de roble";
   $TipoAlmacen["tipoAlmest"]="ACT";
   $TipoAlmacen["tipoAlmId"]=2;
-  /*
+  
   echo insertarTipoAlmacen($TipoAlmacen)."</br>";
   print_r(obtenerTipoAlmacen(1));*/
   
-  echo actualizarTipoAlmacen($TipoAlmacen)."</br>";
-  print_r(obtenerTipoAlmacen(2));
+  //print_r(obtenerTipoAlmacenes());
+  
+  /*echo actualizarTipoAlmacen($TipoAlmacen)."</br>";
+  print_r(obtenerTipoAlmacen(2));*/
 ?>

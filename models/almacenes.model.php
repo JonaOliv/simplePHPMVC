@@ -1,18 +1,6 @@
 <?php
     //modelo de datos de empresa
     /*
-    `empresaId`
-    `empdsc`
-    `emprtn`
-    `empdir`
-    `emptel`
-    `emptel2`
-    `empurl`
-    `empfching`
-    `empusring`
-    `empest`
-    `empctc`
-    `emptip`
 
     CREATE TABLE `nw201501`.`almacenes` (
   `almId` bigint(10) NOT NULL AUTO_INCREMENT,
@@ -25,7 +13,7 @@
   `almtel1` varchar(128) COLLATE utf8_bin DEFAULT NULL,
   `tipoMatId` bigint(10) COLLATE utf8_bin DEFAULT NULL,
   `empresaId` bigint(10) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`empresaId`)
+  PRIMARY KEY (`almId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
@@ -61,7 +49,15 @@ FROM `nw201501`.`almacenes`;
       $Almacen = obtenerUnRegistro($sqlstr);
       return $Almacen;
     }
-
+    
+    function sePuedeBorrar($AlmacenID){
+        $AlmacenID = array();
+      $sqlstr = "select * from almacenes where tipoAlmId = %d;";
+      $sqlstr = sprintf($sqlstr, $AlmacenID);
+      $AlmacenID = obtenerUnRegistro($sqlstr);
+      return $AlmacenID;
+    }
+    
     function insertarEmpresa($Almacen){
       if($Almacen && is_array($Almacen)){
 

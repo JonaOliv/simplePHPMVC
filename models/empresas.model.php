@@ -53,7 +53,7 @@
 
     function insertarEmpresa($Empresa){
       if($Empresa && is_array($Empresa)){
-
+         if(!isset($Empresa["empusring"]))$Empresa["empusring"]="Sistemas";
          $sqlInsert = "INSERT INTO `empresa` (`empdsc`, `emprtn`, `empdir`, `emptel`, `emptel2`, `empurl`, `empfching`, `empusring`, `empest`, `empctc`, `emptip`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', now(), '%s', '%s', '%s', '%s');";
          $sqlInsert = sprintf($sqlInsert,
                         $Empresa["empdsc"],
@@ -97,7 +97,7 @@
 
     function borrarEmpresa($EmpresaID){
       if($EmpresaID){
-        $sqlDelete = "delete from Empresa where empresaid=%d;";
+        $sqlDelete = "delete from empresa where empresaid=%d;";
         $sqlDelete = sprintf($sqlDelete,
                       valstr($EmpresaID)
                     );
