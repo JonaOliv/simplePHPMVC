@@ -1,10 +1,17 @@
 <?php
-    //modelo de datos de tipo de materiales
+    //modelo de datos de tipo de almacenes
     /*
     SELECT `tipoAlmacen`.`tipoAlmId`,
     `tipoAlmacen`.`tipoAlmdsc`,
     `tipoAlmacen`.`tipoAlmest`
 FROM `nw201501`.`tipoAlmacen`;
+
+CREATE TABLE `tipoAlmacen` (
+  `tipoAlmId` bigint(10) NOT NULL AUTO_INCREMENT,
+  `tipoAlmdsc` varchar(45) COLLATE utf8_bin NOT NULL,
+  `tipoAlmest` char(3) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`tipoAlmId`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
     */
 

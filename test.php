@@ -3,6 +3,7 @@
   require("./models/empresas.model.php");
   require("./models/tipoMateriales.model.php");
   require("./models/tipoAlmacen.model.php");
+  require_once("models/almacenes.model.php");
   /*
   $Empresa=array();
   $Empresa["empdsc"] = "La antorcha";
@@ -21,7 +22,7 @@
   print_r(obtenerEmpresa(3));*/
   
   //echo insertarEmpresa($Empresa);
-  print_r(obtenerEmpresas());
+  //print_r(obtenerEmpresas());
   /*
   $TipoMaterial=array();
   $TipoMaterial["tipoMatdsc"]="madera";
@@ -36,11 +37,15 @@
   $TipoAlmacen["tipoAlmest"]="ACT";
   $TipoAlmacen["tipoAlmId"]=2;
   
-  echo insertarTipoAlmacen($TipoAlmacen)."</br>";
-  print_r(obtenerTipoAlmacen(1));*/
+  echo insertarTipoAlmacen($TipoAlmacen)."</br>";*/
+  //print_r(obtenerTipoAlmacen(1));
+  echo "Hola";
   
   //print_r(obtenerTipoAlmacenes());
   
   /*echo actualizarTipoAlmacen($TipoAlmacen)."</br>";
   print_r(obtenerTipoAlmacen(2));*/
+  
+  //print_r(obtenerAlmacenes());
+  //die();
 ?>

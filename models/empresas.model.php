@@ -50,6 +50,14 @@
       $Empresa = obtenerUnRegistro($sqlstr);
       return $Empresa;
     }
+    
+    function sePuedeBorrar($EmpresaID){
+        $EmpresaID = array();
+      $sqlstr = "select * from almacenes where empresaId = %d;";
+      $sqlstr = sprintf($sqlstr, $EmpresaID);
+      $EmpresaID = obtenerUnRegistro($sqlstr);
+      return $EmpresaID;
+    }
 
     function insertarEmpresa($Empresa){
       if($Empresa && is_array($Empresa)){
