@@ -55,7 +55,7 @@
     <label class="col4" for="empresaId">Empresa</label>
     <select class="col8" id="empresaId" name="empresaId" {{disabled}}>
   {{foreach empresaIdBox}}
-      <option value="{{empresaId}}">{{empdsc}}</option>
+      <option value="{{empresaId}}" {{Selected}}>{{empdsc}}</option>
   {{endfor empresaIdBox}}
   </select>
   </div>

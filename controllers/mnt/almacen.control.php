@@ -79,15 +79,18 @@ FROM nw201501.almacenes;
             if($Almacen){
               $htmlDatos["almacenTitle"] = "Actualizar ".$Almacen["almdsc"];
               $htmlDatos["almacenMode"] = "upd";
+              
 
               // Esta funcion mergeArrayTo se encuentra en libs/utilities.php
               // utiliza parametros por referencia se usa para llenar los
               // datos comunes del primer arreglo segun llave en el segundo
               // si existen en el segundo. Asi podemos compiar los datos empresas directamente
               // en el arreglo htmlDatos sin tener que estar escribiendo cada asignación.
-
+                
               mergeArrayTo($Almacen , $htmlDatos);
-
+              
+              
+              $htmlDatos["empresaIdBox"]=obtenerEmpresa($Almacen["empresaId"]);
 
               renderizar("almacen", $htmlDatos);
             }else{

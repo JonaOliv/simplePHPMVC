@@ -34,11 +34,11 @@ CREATE TABLE `tipoAlmacen` (
     }
     
     function sePuedeBorrar($TipoAlmacenID){
-        $TipoAlmacenID = array();
+        $TipoAlmacen = array();
       $sqlstr = "select * from almacenes where tipoAlmId = %d;";
       $sqlstr = sprintf($sqlstr, $TipoAlmacenID);
-      $TipoAlmacenID = obtenerUnRegistro($sqlstr);
-      return $TipoAlmacenID;
+      $TipoAlmacen = obtenerUnRegistro($sqlstr);
+      return $TipoAlmacen;
     }
 
     function insertarTipoAlmacen($TipoAlmacen){

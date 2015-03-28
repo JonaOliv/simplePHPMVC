@@ -111,18 +111,15 @@
           }else{
             $empresa = obtenerEmpresa($_GET["empresaId"]);
             if($empresa){
-              $htmlDatos["empresaTitle"] = "Borrar ".$empresa["empdsc"];
+              $htmlDatos["empresaTitle"] = "Actualizar ".$empresa["empdsc"];
               $htmlDatos["empresaMode"] = "dlt";
-  
               mergeArrayTo($empresa , $htmlDatos);
-  
               $htmlDatos["actSelected"]=($empresa["empest"] =="ACT")?"selected":"";
               $htmlDatos["inaSelected"]=($empresa["empest"] =="INA")?"selected":"";
               $htmlDatos["srvSelected"]=($empresa["emptip"] =="SRV")?"selected":"";
               $htmlDatos["rtlSelected"]=($empresa["emptip"] =="RTL")?"selected":"";
               $htmlDatos["wrhSelected"]=($empresa["emptip"] =="WRH")?"selected":"";
               $htmlDatos["disabled"]="disabled";
-  
               renderizar("empresa", $htmlDatos);
             }else{
                 redirectWithMessage("¡Empresa No Encontrada!","index.php?page=empresas");

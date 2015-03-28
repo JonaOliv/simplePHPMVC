@@ -55,6 +55,62 @@ FROM nw201501.almacenes;
         $Empresas = obtenerRegistros($sqlstr);
         return $Empresas;
     }
+    
+    function obtenerTipoAlmacen($ID){
+        $TipoAlmacenes = array();
+        $sqlstr = "select * from tipoAlmacen;";
+        $TipoAlmacenes = obtenerRegistros($sqlstr);
+        
+        for($i=0; $i<count($TipoAlmacenes); $i++){
+            if($TipoAlmacenes[$i]["tipoAlmId"]==$ID){
+                $TipoAlmacenes[$i]["Selected"]="Selected";
+            }else{
+                $TipoAlmacenes[$i]["Selected"]="";
+            }
+            
+        }
+        
+        return $TipoAlmacenes;
+    }
+    
+    function obtenerTipoMaterial($ID){
+        $TipoMateriales = array();
+        $sqlstr = "select * from tipoMaterial;";
+        $TipoMateriales = obtenerRegistros($sqlstr);
+        
+        for($i=0; $i<count($TipoMateriales); $i++){
+            if($TipoMateriales[$i]["tipoMatId"]==$ID){
+                $TipoMateriales[$i]["Selected"]="Selected";
+            }else{
+                $TipoMateriales[$i]["Selected"]="";
+            }
+            
+        }
+        
+        return $TipoMateriales;
+    }
+    
+    function obtenerEmpresa($ID){
+        $Empresas = array();
+        $sqlstr = "select * from empresa;";
+        $Empresas = obtenerRegistros($sqlstr);
+    
+        for($i=0; $i<count($Empresas); $i++){
+            if($Empresas[$i]["empresaId"]==$ID){
+                $Empresas[$i]["Selected"]="Selected";
+            }else{
+                $Empresas[$i]["Selected"]="";
+            }
+            
+        }
+        /*
+        print_r($Empresas);
+              echo '</br>';
+              echo $ID;
+              die();*/
+        
+        return $Empresas;
+    }
     //fin otros modelos
 
     function obtenerAlmacenes(){
@@ -75,12 +131,12 @@ FROM nw201501.almacenes;
     function obtenerAlmacen($AlmacenID){
         $Almacen = array();
         $sqlstr = "SELECT almacenes.almId, almacenes.almdsc, almacenes.almrtn,";
-        $sqlstr .= " (select tipoAlmacen.tipoAlmdsc from tipoAlmacen where tipoAlmacen.tipoAlmId=almacenes.tipoAlmId) 'tipoAlmId',";
+        $sqlstr .= " almacenes.tipoAlmId 'tipoAlmId',";
         $sqlstr .= " almacenes.almctd, almacenes.almdir,";
-        $sqlstr .= " (select alm2.almdsc from almacenes as alm2 where alm2.almId = almacenes.almSupAlm) 'almSupAlm',";
+        $sqlstr .= " (select alm2.almId from almacenes as alm2 where alm2.almId = almacenes.almSupAlm) 'almSupAlm',";
         $sqlstr .= " almacenes.almtel1,";
-        $sqlstr .= " (select tipoMaterial.tipoMatdsc from tipoMaterial where tipoMaterial.tipoMatId=almacenes.tipoMatId) 'tipoMatId',";
-        $sqlstr .= " (select empresa.empdsc from empresa where empresa.empresaId=almacenes.empresaId) 'empresaId'";
+        $sqlstr .= " almacenes.tipoMatId 'tipoMatId',";
+        $sqlstr .= " almacenes.empresaId 'empresaId'";
         $sqlstr .= " FROM almacenes where almacenes.almId = %d;";
         $sqlstr = sprintf($sqlstr, $AlmacenID);
         $Almacen = obtenerUnRegistro($sqlstr);
@@ -88,11 +144,11 @@ FROM nw201501.almacenes;
     }
     
     function sePuedeBorrar($AlmacenID){
-        $AlmacenID = array();
+        $Almacen = array();
       $sqlstr = "select tipoAlmId,tipoMatId,empresaId from almacenes where almId = %d;";
       $sqlstr = sprintf($sqlstr, $AlmacenID);
-      $AlmacenID = obtenerUnRegistro($sqlstr);
-      return ($AlmacenID["tipoAlmId"] && $AlmacenID["tipoMatId"] && $AlmacenID["empresaId"]);
+      $Almacen = obtenerUnRegistro($sqlstr);
+      return ($Almacen["tipoAlmId"] && $Almacen["tipoMatId"] && $Almacen["empresaId"]);
     }
     
     function insertarAlmacen($Almacen){

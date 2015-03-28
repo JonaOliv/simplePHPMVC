@@ -52,11 +52,11 @@
     }
     
     function sePuedeBorrar($EmpresaID){
-        $EmpresaID = array();
+        $Empresa = array();
       $sqlstr = "select * from almacenes where empresaId = %d;";
       $sqlstr = sprintf($sqlstr, $EmpresaID);
-      $EmpresaID = obtenerUnRegistro($sqlstr);
-      return $EmpresaID;
+      $Empresa = obtenerUnRegistro($sqlstr);
+      return $Empresa;
     }
 
     function insertarEmpresa($Empresa){
