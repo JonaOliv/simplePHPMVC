@@ -35,7 +35,7 @@ FROM nw201501.almacenes;
     $htmlDatos["almctd"]="";
     $htmlDatos["almdir"]="";
     $htmlDatos["almSupAlm"]="";
-    $htmlDatos["almSupAlmBox"]= obtenerAlmacenes();
+    $htmlDatos["almSupAlmBox"]= obtenerAlmacenForComboSuper();
     $htmlDatos["almtel1"]="";
     //$htmlDatos["actSelected"]="selected";
     //$htmlDatos["inaSelected"]="";
@@ -91,6 +91,10 @@ FROM nw201501.almacenes;
               
               
               $htmlDatos["empresaIdBox"]=obtenerEmpresa($Almacen["empresaId"]);
+              
+              $htmlDatos["almSupAlmBox"]= obtenerAlmacenForComboSuper();
+              $htmlDatos["tipoAlmIdBox"]=obtenerTipoAlmacen($Almacen["tipoAlmId"]);
+              $htmlDatos["tipoMatIdBox"]=obtenerTipoMaterial($Almacen["tipoMatId"]);
 
               renderizar("almacen", $htmlDatos);
             }else{
@@ -122,12 +126,11 @@ FROM nw201501.almacenes;
               $htmlDatos["almacenMode"] = "dlt";
   
               mergeArrayTo($Almacen , $htmlDatos);
-  /*
-              $htmlDatos["actSelected"]=($empresa["empest"] =="ACT")?"selected":"";
-              $htmlDatos["inaSelected"]=($empresa["empest"] =="INA")?"selected":"";
-              $htmlDatos["srvSelected"]=($empresa["emptip"] =="SRV")?"selected":"";
-              $htmlDatos["rtlSelected"]=($empresa["emptip"] =="RTL")?"selected":"";
-              $htmlDatos["wrhSelected"]=($empresa["emptip"] =="WRH")?"selected":"";*/
+  
+              $htmlDatos["empresaIdBox"]=obtenerEmpresa($Almacen["empresaId"]);
+              $htmlDatos["almSupAlmBox"]= obtenerAlmacenForComboSuper();
+              $htmlDatos["tipoAlmIdBox"]=obtenerTipoAlmacen($Almacen["tipoAlmId"]);
+              $htmlDatos["tipoMatIdBox"]=obtenerTipoMaterial($Almacen["tipoMatId"]);
               $htmlDatos["disabled"]="disabled";
   
               renderizar("almacen", $htmlDatos);

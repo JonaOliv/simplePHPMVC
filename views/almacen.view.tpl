@@ -18,8 +18,9 @@
     <label class="col4" for="tipoAlmId">Tipo de Almacen</label>
     <select class="col8" id="tipoAlmId" name="tipoAlmId" {{disabled}}>
   {{foreach tipoAlmIdBox}}
-      <option value="{{tipoAlmId}}">{{tipoAlmdsc}}</option>
+      <option value="{{tipoAlmId}}" {{Selected}}>{{tipoAlmdsc}}</option>
   {{endfor tipoAlmIdBox}}
+      <option value="0">Ninguno</option>
   </select>
   </div>
   <div>
@@ -35,7 +36,7 @@
     <select class="col8" id="almSupAlm" name="almSupAlm" {{disabled}}>
         <option value="0">Ninguno</option>
   {{foreach almSupAlmBox}}
-      <option value="{{almId}}">{{almdsc}}</option>
+      <option value="{{almIdSU}}" >{{almdscSU}}</option>
   {{endfor almSupAlmBox}}
   </select>
   </div>
@@ -47,8 +48,9 @@
     <label class="col4" for="tipoMatId">Tipo de Material</label>
     <select class="col8" id="tipoMatId" name="tipoMatId" {{disabled}}>
   {{foreach tipoMatIdBox}}
-      <option value="{{tipoMatId}}">{{tipoMatdsc}}</option>
+      <option value="{{tipoMatId}}" {{Selected}}>{{tipoMatdsc}}</option>
   {{endfor tipoMatIdBox}}
+      <option value="0">Ninguno</option>
   </select>
   </div>
   <div>
@@ -57,6 +59,7 @@
   {{foreach empresaIdBox}}
       <option value="{{empresaId}}" {{Selected}}>{{empdsc}}</option>
   {{endfor empresaIdBox}}
+      <option value="0">Ninguno</option>
   </select>
   </div>
   <div class="right col12">

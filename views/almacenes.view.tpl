@@ -7,11 +7,12 @@
     <div class="col1 hd">Código</div>
     <div class="col1 hd">Nombre</div>
     <div class="col1 hd">RTN</div>
+    <div class="col1 hd">Tipo de Almacen</div>
     <div class="col1 hd">Subalm</div>
     <div class="col1 hd">Direccion</div>
     <div class="col1 hd">Superalm</div>
     <div class="col1 hd">Telefono</div>
-    <div class="col1 hd">Tipo de Almacen</div>
+    
     <div class="col1 hd">Tipo de Material</div>
     <div class="col1 hd">Empresa</div>
     <div class="col2 hd">Acciones</div>
