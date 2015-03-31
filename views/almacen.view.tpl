@@ -34,11 +34,11 @@
   <div>
     <label class="col4" for="almSupAlm">Superalmacen</label>
     <select class="col8" id="almSupAlm" name="almSupAlm" {{disabled}}>
-        <option value="0">Ninguno</option>
+      <option value="0">Ninguno</option>
   {{foreach almSupAlmBox}}
-      <option value="{{almIdSU}}" >{{almdscSU}}</option>
+      <option value="{{almIdSU}}" {{Selected}}>{{almdscSU}}</option>
   {{endfor almSupAlmBox}}
-  </select>
+    </select>
   </div>
   <div>
     <label class="col4" for="almtel1">Teléfono</label>

@@ -144,27 +144,44 @@ FROM nw201501.almacenes;
         return $Almacen;
     }
     
-    function obtenerAlmacenForComboSuper(){
+    function obtenerAlmacenesForComboSuper(){
         $sqlstr="";
         
-        $sqlstr = "SELECT almacenes.almId 'almIdSU', almacenes.almdsc 'almdscSU' FROM nw201501.almacenes where almacenes.almSupAlm=0 or almacenes.almSupAlm=null;";
+        $sqlstr = "SELECT almacenes.almId 'almIdSU', almacenes.almdsc 'almdscSU' FROM nw201501.almacenes where almacenes.almSupAlm=%d or almacenes.almSupAlm=null;";
+        $sqlstr = sprintf($sqlstr, 0);
         $Almacen = array();
-        $Almacen = obtenerUnRegistro($sqlstr);
+        $Almacen = obtenerRegistros($sqlstr);
         
         
-        /*
+        //print_r($Almacen);
+          //    die();
+        return $Almacen;
+    }
+    
+    function obtenerAlmacenSeletedForComboSuper($AlmacenID){
+        $sqlstr="";
+        
+        $sqlstr = "SELECT almacenes.almId 'almIdSU', almacenes.almdsc 'almdscSU' FROM nw201501.almacenes where almacenes.almSupAlm=%d or almacenes.almSupAlm=null;";
+        $sqlstr = sprintf($sqlstr, 0);
+        $Almacen = array();
+        $Almacen = obtenerRegistros($sqlstr);
+        
         for($i=0; $i<count($Almacen); $i++){
             if(is_numeric($AlmacenID)){
-                if($Almacen[$i]["almId"] == $AlmacenID){
+                if($Almacen[$i]["almIdSU"] == $AlmacenID){
                     $Almacen[$i]["Selected"]="Selected";
                 }else{
-                    //$Almacen[$i]["Selected"]=" ";
+                    $Almacen[$i]["Selected"]="";
                 }
             }else{
                 $Almacen[$i]["Selected"]="";
             }
             
-        }*/
+        }
+        /*
+        print_r($Almacen);
+        echo '</br>'.$AlmacenID;
+              die();*/
         return $Almacen;
     }
     

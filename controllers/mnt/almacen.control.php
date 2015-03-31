@@ -35,7 +35,7 @@ FROM nw201501.almacenes;
     $htmlDatos["almctd"]="";
     $htmlDatos["almdir"]="";
     $htmlDatos["almSupAlm"]="";
-    $htmlDatos["almSupAlmBox"]= obtenerAlmacenForComboSuper();
+    $htmlDatos["almSupAlmBox"]= obtenerAlmacenesForComboSuper();
     $htmlDatos["almtel1"]="";
     //$htmlDatos["actSelected"]="selected";
     //$htmlDatos["inaSelected"]="";
@@ -92,10 +92,12 @@ FROM nw201501.almacenes;
               
               $htmlDatos["empresaIdBox"]=obtenerEmpresa($Almacen["empresaId"]);
               
-              $htmlDatos["almSupAlmBox"]= obtenerAlmacenForComboSuper();
+              
+              $htmlDatos["almSupAlmBox"]= obtenerAlmacenSeletedForComboSuper($Almacen["almSupAlm"]);
               $htmlDatos["tipoAlmIdBox"]=obtenerTipoAlmacen($Almacen["tipoAlmId"]);
               $htmlDatos["tipoMatIdBox"]=obtenerTipoMaterial($Almacen["tipoMatId"]);
-
+              /*print_r($htmlDatos["almSupAlmBox"]);
+              die();*/
               renderizar("almacen", $htmlDatos);
             }else{
               redirectWithMessage("¡Almacen No Encontrado!","index.php?page=almacenes");
