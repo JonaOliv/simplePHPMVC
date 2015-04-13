@@ -28,6 +28,12 @@
         case "registro":
             require_once("controllers/registro.control.php");
             break;
+        case "menu":
+            require_once("controllers/menu.control.php");
+            break;
+        case "cerrar":
+            require_once("controllers/cierre.control.php");
+            break;
         //para agregar una nueva pagina
         // agregar otro case
         case "categorias":

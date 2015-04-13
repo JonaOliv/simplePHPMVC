@@ -29,4 +29,34 @@
         return 0;
     }
     
+    function obtenerRolesActivos(){
+        $roles= array();
+        $sqlstr = "Select * from Roles where estado='ACT';";
+        $roles = obtenerRegistros($sqlstr);
+        return $roles;
+    }
+
+    function obtenerRol($roleID){
+        $rol= array();
+        $sqlstr = "Select rol from Roles where idrol='%s';";
+        $sqlstr = sprintf($sqlstr, valstr($roleID));
+        $rol = obtenerUnRegistros($sqlstr);
+        return $rol;
+    }
+    
+    function obtenerRolesForCombo($selectedRolId){
+        $roles = obtenerRolesActivos();
+        for($i=0;$i<count($roles); $i++){
+          if($roles[$i]["idrol"]==$selectedRolId){
+            $roles[$i]["selected"] = "selected";
+          } else {
+            $roles[$i]["selected"] = "";
+          }
+        }
+        return $roles;
+    }
+    
+    function obtenerRolAdmin(){
+        return false;
+    }
 ?>

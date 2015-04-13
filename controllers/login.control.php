@@ -30,6 +30,7 @@
           $pswd = md5($pswd);
           if($usuario["usuariopwd"] == $pswd){
             mw_setEstaLogueado($userName, true);
+            mw_setAdmin(obtenerRolAdmin());
             header("Location:index.php" . $_POST["returnUrl"]);
             die();
           }else{

@@ -35,7 +35,7 @@
                                         )
                                       );
     
-    
+    addToContext("prueba",true);
     renderizar("menu", $datos_para_vista);
   }
  

@@ -16,8 +16,23 @@
                 <li><a href="index.php?page=tipomateriales">Tipos de Materiales</a></li>
                 <li><a href="index.php?page=tipoalmacenes">Tipos de Almacenes</a></li>
                 <li><a href="index.php?page=almacenes">Almacenes</a></li>
+                
+                {{if entradaLogin}}
                 <li><a href="index.php?page=login">Inicia Sesión</a></li>
                 <li><a href="index.php?page=registro">Regístrate</a></li>
+                {{endif entradaLogin}}
+                
+                {{if salidaLogin}}
+                    {{if admin}}
+                    <li><a href="index.php?page=usuarios">Usuarios</a></li>
+                    <li><a href="index.php?page=mensualidades">Mensualidades</a></li>
+                    <li><a href="index.php?page=donaciones">Donaciones</a></li>
+                    {{endif admin}}
+                <li><a href="index.php?page=perfil">{{usuario}}</a></li>
+                <li><a href="index.php?page=cerrar">Cerrar Sesión</a></li>
+                {{endif salidaLogin}}
+                
+                <li><a href="index.php?page=menu">Menu</a></li>
             </ul>
             {{{page_content}}}
             <div class="footer">
