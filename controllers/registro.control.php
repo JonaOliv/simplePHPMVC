@@ -12,19 +12,34 @@
     $htmlData["errores"] = array();
     $htmlData["txtUserName"] = "";
     $htmlData["txtEmail"]="";
+    $htmlData["MasSelected"]="selected";
+    $htmlData["FemSelected"]="";
     
     if(isset($_POST["btnRegister"])){
       $htmlData["txtUserName"] = $_POST["txtUserName"];
       $htmlData["txtEmail"] =  $_POST["txtEmail"];
+      $htmlData["txtuserLastname"] = $_POST["txtuserLastname"];
+      $htmlData["txtgenero"] =  $_POST["txtgenero"];
+      $htmlData["txtfechaNac"] = $_POST["txtfechaNac"];
+      
+      $htmlDatos["MasSelected"]=($_POST["txtgenero"] =="Masculino")?"selected":"";
+      $htmlDatos["FemSelected"]=($_POST["txtgenero"] =="Femenino")?"selected":"";
       
       $pswd = $_POST["txtPswd"];
       $pswdCnf = $_POST["txtPswdCnf"];
       
+      //print_r();
+      echo $htmlData["txtfechaNac"];
+      die();
+      
       if($pswd == $pswdCnf){
         //seguir proceso de registro
         // verificar que el usuario no exista previamente
+        $checkUser=array();
         $checkUser = obtenerUsuario( $htmlData["txtEmail"]);
-        if(count($checkUser)==0){
+        
+        
+        if(count($checkUser)!=0){
           $htmlData["mostrarErrores"] = true;
           $htmlData["errores"][]=array("errmsg"=>"Correo Electrónico ya Usado!");
         }else{
@@ -37,12 +52,17 @@
           }else{
             $pswdSalted = $fchingreso . $pswd;
           }
+          /*
+          echo time();
+          echo "</br>";
+          echo $pswdSalted;
+          die();*/
           
           $pswdSalted = md5($pswdSalted);
           
-          insertUsuario(   $htmlData["txtUserName"],
-                        $htmlData["txtEmail"],
-                        $fchingreso, $pswdSalted);
+          insertUsuario(   $htmlData["txtUserName"],$htmlData["txtuserLastname"],
+                        $htmlData["txtgenero"], $htmlData["txtEmail"],
+                        $fchingreso,$htmlData["txtfechaNac"], $pswdSalted);
                         
           // ingresar
           /*

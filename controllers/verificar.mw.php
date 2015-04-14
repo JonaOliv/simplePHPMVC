@@ -9,6 +9,8 @@
             addToContext("entradaLogin",false);
             addToContext("salidaLogin",true);
             
+            $bool=mw_IsAdmin();
+            
             return true;
         }
         return false;
@@ -33,15 +35,6 @@
     }
     
     function mw_setAdmin($logueado){
-        /*if($logueado){
-            $_SESSION["admin"] = true;
-            
-            addToContext("admin",true);
-        }else{
-            $_SESSION["admin"] = false;
-            
-            addToContext("admin",false);
-        }*/
         switch($logueado){
             //salir
             case 1:
@@ -61,7 +54,7 @@
     }
     
     function mw_IsAdmin(){
-        if($_SESSION["admin"]){
+        if(isset($_SESSION["admin"]) && $_SESSION["admin"] == true){
             addToContext("admin",true);
             return true;
         }else{

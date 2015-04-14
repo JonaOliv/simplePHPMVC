@@ -28,14 +28,24 @@
         case "registro":
             require_once("controllers/registro.control.php");
             break;
-        case "menu":
-            require_once("controllers/menu.control.php");
-            break;
         case "cerrar":
             require_once("controllers/cierre.control.php");
             break;
+        case "donaciones":
+            require_once("controllers/donaciones.control.php");
+            break;
+        case "mensualidades":
+            require_once("controllers/mensualidades.control.php");
+            break;
+        case "usuarios":
+            require_once("controllers/usuarios.control.php");
+            break;
+        //lo anterior son los indices que he modificado y agregado
         //para agregar una nueva pagina
         // agregar otro case
+        case "menu":
+            require_once("controllers/menu.control.php");
+            break;
         case "categorias":
             require_once("controllers/categorias.control.php");
             break;

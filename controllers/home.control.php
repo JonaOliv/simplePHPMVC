@@ -6,9 +6,8 @@
  */
   require_once("libs/template_engine.php");
   function run(){
+    $bool=mw_estaLogueado();
     renderizar("home",array());
-    
-    
   }
  
 

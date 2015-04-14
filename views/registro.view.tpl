@@ -6,7 +6,16 @@
 </ul>
 {{endif mostrarErrores}}
 <form action="index.php?page=registro" method="post">
-    <label>Nombre Completo</label><input type="text" name="txtUserName" value="{{txtUserName}}"/>
+    <label>Nombre</label><input type="text" name="txtUserName" value="{{txtUserName}}"/>
+    <br>
+    <label>Apellido</label><input type="text" name="txtUserName" value="{{txtuserLastname}}"/>
+    <br>
+    <label for="txtgenero">Genero</label>
+    <select class="col8" id="txtgenero" name="txtgenero">
+      <option value="Masculino" {{MasSelected}}>Masculino</option>
+      <option value="Femenino" {{FemSelected}}>Femenino</option>
+    </select>
+    <label>Fecha de Nacimiento</label><input type="date" name="txtfechaNac" value="{{txtfechaNac}}"/>
     <br>
     <label>Correo Electrónico</label><input type="email" name="txtEmail" value="{{txtEmail}}"/>
     <br>

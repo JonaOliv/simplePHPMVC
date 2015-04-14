@@ -4,27 +4,54 @@
     
     function obtenerUsuario($userName){
         $usuario = array();
-        $sqlstr = sprintf("SELECT idusuarios, usuarioemail, usuarionom, usuariopwd, usuarioest, UNIX_TIMESTAMP(usuariofching) as usuariofching, usuariolstlgn, usuariofatm, usuariofchlp FROM usuarios where usuarioemail = '%s';",$userName);
+        $sqlstr = sprintf("SELECT idusuarios, usuarionom, usuarioape, usuariogenero, 
+                          UNIX_TIMESTAMP(usuariofching) as usuariofching, fechaNac, usuarioemail,  usuariopwd, usuarioest,
+                          usuariolstlgn, usuariofatm, usuariofchlp FROM Usuarios where usuarioemail = '%s';",$userName);
 
         $usuario = obtenerUnRegistro($sqlstr);
         return $usuario;
     }
     
-    function insertUsuario($userName, $userEmail,
-                           $timestamp, $password){
+    function obtenerIDUsuario($userName){
+        $sqlstr = sprintf("SELECT idusuarios FROM Usuarios where usuarioemail = '%s';",$userName);
+
+        $usuario = obtenerUnRegistro($sqlstr);
+        return $usuario;
+    }
+    
+    function insertUsuario($userName, $userLastname,$genero, $userEmail,
+                           $timestamp, $nacimiento,$password){
         $strsql = "INSERT INTO usuarios
-                    (usuarioemail, usuarionom, usuariopwd,
-                    usuarioest, usuariofching,  usuariolstlgn,
-                    usuariofatm, usuariofchlp)
+                    (`usuarionom`,
+                    `usuarioape`,
+                    `usuariogenero`,
+                    `usuariofching`,
+                    `fechaNac`,
+                    `usuarioemail`,
+                    `usuariopwd`,
+                    `usuarioest`,
+                    `usuariolstlgn`,
+                    `usuariofatm`,
+                    `usuariofchlp`)
                    VALUES
-                    ('%s', '%s','%s','ACT', FROM_UNIXTIME(%s) , null, 0, null);";
-        $strsql = sprintf($strsql, valstr($userEmail),
-                                    valstr($userName),
-                                    $password,
-                                    $timestamp);
+                    ('%s','%s','%s',FROM_UNIXTIME(%s),FROM_UNIXTIME(%s),'%s','%s','ACT', null, 0, null);";
+                    //revisar lo de fecha
+        $strsql = sprintf($strsql,valstr($userName),valstr($userLastname),valstr($genero),$timestamp,$nacimiento,
+                          valstr($userEmail),$password);
         
         if(ejecutarNonQuery($strsql)){
-            return getLastInserId();
+            
+            $IDUser=obtenerIDUsuario($userEmail);
+            $IDRol=obtenerIDRol("padrino");
+            $strsql2="INSERT INTO `rolesXusuario`
+                (`idUsuario`,`idRoles`,`estado`) VALUES
+                (%d,%d,'%s');";
+            $strsql2 = sprintf($strsql2,intval($IDUser),intval($IDRol),"ACT");
+            
+            if(ejecutarNonQuery($strsql2)){
+                return getLastInserId();
+            }
+            return 0;
         }
         return 0;
     }
@@ -36,12 +63,20 @@
         return $roles;
     }
 
-    function obtenerRol($roleID){
+    function obtenerRevisarRol($usuarioID,$rol){
         $rol= array();
-        $sqlstr = "Select rol from Roles where idrol='%s';";
-        $sqlstr = sprintf($sqlstr, valstr($roleID));
-        $rol = obtenerUnRegistros($sqlstr);
+        $sqlstr = "Select Roles.rol from rolesXusuario, Roles where rolesXusuario.idUsuario=%d and rolesXusuario.estado='ACT' and Roles.rol='%s';";
+        $sqlstr = sprintf($sqlstr, $usuarioID,$rol);
+        $rol = obtenerUnRegistro($sqlstr);
         return $rol;
+    }
+    
+    function obtenerIDRol($rolBuscado){
+        $rol= array();
+        $sqlstr = "Select Roles.idrol 'idrol' from Roles where Roles.estado='ACT' and Roles.rol='%s';";
+        $sqlstr = sprintf($sqlstr, $rolBuscado);
+        $rol = obtenerUnRegistro($sqlstr);
+        return $rol["idrol"];
     }
     
     function obtenerRolesForCombo($selectedRolId){
@@ -56,7 +91,13 @@
         return $roles;
     }
     
-    function obtenerRolAdmin(){
-        return false;
+    function obtenerRolAdmin($userName){
+        $usuarioID=obtenerIDUsuario($userName);
+        $rol=obtenerRevisarRol($usuarioID,"administrador");
+        if($rol){
+            return 2;
+        }else{
+            return 1;
+        }
     }
 ?>
