@@ -4,24 +4,24 @@
     
     function obtenerUsuario($userName){
         $usuario = array();
-        $sqlstr = sprintf("SELECT idusuarios, usuarionom, usuarioape, usuariogenero, 
-                          UNIX_TIMESTAMP(usuariofching) as usuariofching, fechaNac, usuarioemail,  usuariopwd, usuarioest,
-                          usuariolstlgn, usuariofatm, usuariofchlp FROM Usuarios where usuarioemail = '%s';",$userName);
+        $sqlstr = sprintf("SELECT `idusuarios`, `usuarionom`, `usuarioape`, `usuariogenero`, 
+                          UNIX_TIMESTAMP(`usuariofching`) as `usuariofching`, `fechaNac`, `usuarioemail`,  `usuariopwd`, `usuarioest`,
+                          `usuariolstlgn`, `usuariofatm`, `usuariofchlp` FROM `Usuarios` where `usuarioemail` = '%s';",$userName);
 
         $usuario = obtenerUnRegistro($sqlstr);
         return $usuario;
     }
     
     function obtenerIDUsuario($userName){
-        $sqlstr = sprintf("SELECT idusuarios FROM Usuarios where usuarioemail = '%s';",$userName);
-
+        $sqlstr = sprintf("SELECT `idusuarios` FROM `Usuarios` where `usuarioemail` = '%s';",$userName);
+        $usuario = array();
         $usuario = obtenerUnRegistro($sqlstr);
-        return $usuario;
+        return $usuario["idusuarios"];
     }
     
     function insertUsuario($userName, $userLastname,$genero, $userEmail,
                            $timestamp, $nacimiento,$password){
-        $strsql = "INSERT INTO usuarios
+        $strsql = "INSERT INTO Usuarios
                     (`usuarionom`,
                     `usuarioape`,
                     `usuariogenero`,
@@ -34,21 +34,26 @@
                     `usuariofatm`,
                     `usuariofchlp`)
                    VALUES
-                    ('%s','%s','%s',FROM_UNIXTIME(%s),FROM_UNIXTIME(%s),'%s','%s','ACT', null, 0, null);";
+                    ('%s','%s','%s',FROM_UNIXTIME(%s),'%s','%s','%s','ACT', null, 0, null);";
                     //revisar lo de fecha
         $strsql = sprintf($strsql,valstr($userName),valstr($userLastname),valstr($genero),$timestamp,$nacimiento,
                           valstr($userEmail),$password);
         
         if(ejecutarNonQuery($strsql)){
             
+            
             $IDUser=obtenerIDUsuario($userEmail);
             $IDRol=obtenerIDRol("padrino");
             $strsql2="INSERT INTO `rolesXusuario`
                 (`idUsuario`,`idRoles`,`estado`) VALUES
-                (%d,%d,'%s');";
-            $strsql2 = sprintf($strsql2,intval($IDUser),intval($IDRol),"ACT");
+                (%d,%d,'ACT');";
+            $strsql2 = sprintf($strsql2,intval($IDUser),intval($IDRol));
             
             if(ejecutarNonQuery($strsql2)){
+                echo "Pasa por aqui </br>";
+                echo "$IDUser </br>";
+                echo "$IDRol </br>";
+                die();
                 return getLastInserId();
             }
             return 0;

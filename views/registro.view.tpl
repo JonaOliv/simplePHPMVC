@@ -8,13 +8,16 @@
 <form action="index.php?page=registro" method="post">
     <label>Nombre</label><input type="text" name="txtUserName" value="{{txtUserName}}"/>
     <br>
-    <label>Apellido</label><input type="text" name="txtUserName" value="{{txtuserLastname}}"/>
+    <label>Apellido</label><input type="text" name="txtuserLastname" value="{{txtuserLastname}}"/>
     <br>
-    <label for="txtgenero">Genero</label>
+    <label>Genero</label><!--
     <select class="col8" id="txtgenero" name="txtgenero">
       <option value="Masculino" {{MasSelected}}>Masculino</option>
       <option value="Femenino" {{FemSelected}}>Femenino</option>
-    </select>
+    </select>-->
+    <input type="radio" name="txtgenero" value="Masculino" {{MasChecked}}><label>Masculino</label>
+    <input type="radio" name="txtgenero" value="Femenino" {{FemChecked}}><label>Femenino</label>
+    <br>
     <label>Fecha de Nacimiento</label><input type="date" name="txtfechaNac" value="{{txtfechaNac}}"/>
     <br>
     <label>Correo Electrónico</label><input type="email" name="txtEmail" value="{{txtEmail}}"/>

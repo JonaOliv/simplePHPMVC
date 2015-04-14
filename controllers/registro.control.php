@@ -12,8 +12,8 @@
     $htmlData["errores"] = array();
     $htmlData["txtUserName"] = "";
     $htmlData["txtEmail"]="";
-    $htmlData["MasSelected"]="selected";
-    $htmlData["FemSelected"]="";
+    $htmlData["MasChecked"]="checked";
+    $htmlData["FemChecked"]="";
     
     if(isset($_POST["btnRegister"])){
       $htmlData["txtUserName"] = $_POST["txtUserName"];
@@ -22,15 +22,13 @@
       $htmlData["txtgenero"] =  $_POST["txtgenero"];
       $htmlData["txtfechaNac"] = $_POST["txtfechaNac"];
       
-      $htmlDatos["MasSelected"]=($_POST["txtgenero"] =="Masculino")?"selected":"";
-      $htmlDatos["FemSelected"]=($_POST["txtgenero"] =="Femenino")?"selected":"";
+      $htmlDatos["MasChecked"]=($_POST["txtgenero"] =="Masculino")?"checked":"";
+      $htmlDatos["FemChecked"]=($_POST["txtgenero"] =="Femenino")?"checked":"";
       
       $pswd = $_POST["txtPswd"];
       $pswdCnf = $_POST["txtPswdCnf"];
       
-      //print_r();
-      echo $htmlData["txtfechaNac"];
-      die();
+      
       
       if($pswd == $pswdCnf){
         //seguir proceso de registro
@@ -56,6 +54,8 @@
           echo time();
           echo "</br>";
           echo $pswdSalted;
+          echo "</br>";
+          echo strtotime("2015-04-14 14:26:00");
           die();*/
           
           $pswdSalted = md5($pswdSalted);

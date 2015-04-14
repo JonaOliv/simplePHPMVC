@@ -17,7 +17,8 @@
         $userName = $_POST["txtUser"];
         $pswd = $_POST["txtPswd"];
         $returnUrl = $_POST["returnUrl"];
-        $usuario = obtenerUsuario($userName)[0];
+        $usuario = array();
+        $usuario = obtenerUsuario($userName);
         
         if($usuario){
           $salt = $usuario["usuariofching"];
@@ -26,8 +27,21 @@
           }else {
             $pswd = $salt . $pswd;
           }
+          /*
+          echo $pswd;
+          echo "</br>";*/
           
           $pswd = md5($pswd);
+          /*
+          echo $salt;
+          echo "</br>";
+          echo $pswd;
+          echo "</br>";
+          echo $usuario["usuariofching"];
+          echo "</br>";
+          echo $usuario["usuariopwd"];
+          die();*/
+          
           if($usuario["usuariopwd"] == $pswd){
             mw_setEstaLogueado($userName, true);
             mw_setAdmin(obtenerRolAdmin($userName));
